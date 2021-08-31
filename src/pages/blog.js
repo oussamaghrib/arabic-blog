@@ -7,6 +7,8 @@ import SEO from "../components/seo"
 import Button from "../components/button"
 import SearchPosts from "../components/searchPosts"
 
+import DirectionProvider, { DIRECTIONS } from 'react-with-direction/dist/DirectionProvider';
+
 class Blog extends React.Component {
   render() {
     const { data, navigate, location } = this.props
@@ -15,6 +17,8 @@ class Blog extends React.Component {
     const localSearchBlog = data.localSearchBlog
 
     return (
+      <DirectionProvider direction={DIRECTIONS.RTL}>
+        <div>
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title="All posts" />
         <Bio />
@@ -28,6 +32,8 @@ class Blog extends React.Component {
           <Button marginTop="85px">Go Home</Button>
         </Link>
       </Layout>
+      </div>
+      </DirectionProvider>
     )
   }
 }
