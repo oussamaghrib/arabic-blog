@@ -7,6 +7,9 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
 
+import DirectionProvider, { DIRECTIONS } from 'react-with-direction/dist/DirectionProvider';
+
+
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.mdx
@@ -14,6 +17,8 @@ class BlogPostTemplate extends React.Component {
     const { previous, next } = this.props.pageContext
 
     return (
+      <DirectionProvider direction={DIRECTIONS.RTL}>
+        <div>
       <Layout location={this.props.location} title={siteTitle}>
         <SEO
           title={post.frontmatter.title}
@@ -63,6 +68,8 @@ class BlogPostTemplate extends React.Component {
           </li>
         </ul>
       </Layout>
+      </div>
+      </DirectionProvider>
     )
   }
 }
